@@ -10,7 +10,7 @@ Features include
 - Validations are defined in extension methods making it easy to add new validation routines
 
 Sample code ... 
-
+```csharp
 Person JoeSmith = new Person(){
 	FirstName = "Joe",
 	LastName = "Smith",
@@ -42,3 +42,5 @@ validator.ValidateField(item => item.EmailAddress).NotNull().MatchEmail();
 foreach(var currentItem in validator.ValidationErrors){
 	Console.WriteLine(string.Format(@"{0} -> {1}", currentItem.Field, currentItem.Message));
 }
+
+```
