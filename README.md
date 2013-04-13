@@ -4,7 +4,7 @@ ConciseValidation
 An easily readable dot net based object validation library ...
 
 Features include
-- Common validation routines (not null, max lenght, min length, is date, max date, min date, phone, email, regex, predicate functions)
+- Common validation routines (not null, max length, min length, is date, max date, min date, phone, email, regex, predicate functions)
 - Validation definitions are similar to definitions in other popular projects such as AutoMap and Castle Windsor
 - Validations can be chained in a single line
 - Validations are defined in extension methods making it easy to add new validation routines
