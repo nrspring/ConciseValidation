@@ -8,8 +8,10 @@ Features include
 - Validation definitions are similar to definitions in other popular projects such as AutoMap and Castle Windsor
 - Validations can be chained in a single line
 - Validations are defined in extension methods making it easy to add new validation routines
+- Full intellisense
+- Full unit-test coverage
 
-Sample code ... 
+Sample code (see the unit tests for even more scenarios)
 ```csharp
 Person JoeSmith = new Person(){
 	FirstName = "Joe",
