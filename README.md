@@ -39,6 +39,16 @@ validator.ValidateField(item => item.PhoneNumber).NotNull().MatchPhone();
 //Validate that the email address is not null and is valid
 validator.ValidateField(item => item.EmailAddress).NotNull().MatchEmail();
 
+//Validate the first name with an inline predicate function
+validator.ValidateField(item => item.FirstName).ValidateByFunction(x => x.FieldValue != "Joe", "The Name Cannot Be Joe.");
+
+//Validate the first name with an existing predicate function
+private bool CheckFirstName(string value)
+{
+	return value != "Joe";
+}
+
+validator.ValidateField(item => item.FirstName).ValidateByFunction(x => CheckFirstName(x.FieldValue), "The Name Cannot Be Joe.");
 
 //The resulting errors are stored in the collection on the validator object
 foreach(var currentItem in validator.ValidationErrors){

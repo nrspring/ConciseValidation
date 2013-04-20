@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="ExtensionMethods\DateExtensions.cs" />
+    <Compile Include="ExtensionMethods\PredicateExtenstions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\TestItem.cs" />
   </ItemGroup>
