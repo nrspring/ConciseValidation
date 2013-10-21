@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace ConciseValidation
 {
-    public partial class ValidatorItem<t>
+    public partial class ValidatorItem<rootType,fieldType>
     {
-        public Validator<t> ParentValidator { get; set; }
+        public Validator<rootType> ParentValidator { get; set; }
         public string FieldName { get; set; }
-        public string FieldValue { get; set; }
+        public fieldType FieldValue { get; set; }
         public Boolean CanContinue { get; set; }
         public string FieldDescription { get; set; }
 
-        public ValidatorItem<t> SetFieldDescription(string description)
+        public ValidatorItem<rootType, fieldType> SetFieldDescription(string description)
         {
-            var returnResponse = new ValidatorItem<t>()
+            var returnResponse = new ValidatorItem<rootType,fieldType>()
                 {
                     ParentValidator = this.ParentValidator,
                     FieldName = this.FieldName,

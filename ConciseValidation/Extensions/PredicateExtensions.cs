@@ -8,9 +8,9 @@ namespace ConciseValidation.Extensions
 {
     public static class PredicateExtensions
     {
-        public static ValidatorItem<t> ValidateByFunction<t>(this ValidatorItem<t> item, Func<ValidatorItem<t>, Boolean> function, string errorMessage)
+        public static ValidatorItem<rootType, fieldType> ValidateByFunction<rootType, fieldType>(this ValidatorItem<rootType, fieldType> item, Func<ValidatorItem<rootType, fieldType>, Boolean> function, string errorMessage)
         {
-            var returnResponse = new ValidatorItem<t>()
+            var returnResponse = new ValidatorItem<rootType, fieldType>()
             {
                 ParentValidator = item.ParentValidator,
                 FieldName = item.FieldName,

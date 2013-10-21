@@ -7,35 +7,35 @@ using System.Threading.Tasks;
 
 namespace ConciseValidation
 {
-    public class Validator<t>
+    public class Validator<rootType>
     {
         public List<ValidatorError> ValidatorErrors { get; set; }
-        public t FieldObject { get; set; }
+        public rootType FieldObject { get; set; }
 
-        public Validator(t fieldobject)
+        public Validator(rootType fieldobject)
         {
             ValidatorErrors = new List<ValidatorError>();
             FieldObject = fieldobject;
         }
 
-        public ValidatorItem<t> ValidateField(Expression<Func<t, string>> propertyName)
+        public ValidatorItem<rootType, fieldType> ValidateField<fieldType>(Expression<Func<rootType, fieldType>> propertyName)
         {
             var propertyReference = propertyName.Body as MemberExpression;
             string fieldName = propertyReference.Member.Name;
 
-            var returnResponse = new ValidatorItem<t>()
+            var returnResponse = new ValidatorItem<rootType,fieldType>()
             {
                 ParentValidator = this,
                 FieldName = fieldName,
                 CanContinue = true,
-                FieldValue = string.Empty,
+                FieldValue = default(fieldType),
                 FieldDescription = fieldName
             };
 
             var property = FieldObject.GetType().GetProperty(fieldName);
             if (property.GetValue(FieldObject, null) != null)
             {
-                returnResponse.FieldValue = property.GetValue(FieldObject, null).ToString();
+                returnResponse.FieldValue = (fieldType)property.GetValue(FieldObject, null);
             }
 
             return returnResponse;
