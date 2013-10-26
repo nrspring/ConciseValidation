@@ -1,3 +1,0 @@
-﻿Add int extension functions
-Add double extension functions
-Update documentation

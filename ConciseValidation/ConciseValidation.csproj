@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\DateExtensions.cs" />
+    <Compile Include="Extensions\DoubleExtensions.cs" />
+    <Compile Include="Extensions\IntegerExtensions.cs" />
     <Compile Include="Extensions\PredicateExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\StringToDateExtensions.cs" />
@@ -47,9 +49,6 @@
     <Compile Include="Validator.cs" />
     <Compile Include="ValidatorError.cs" />
     <Compile Include="ValidatorItem.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ToDoItems.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

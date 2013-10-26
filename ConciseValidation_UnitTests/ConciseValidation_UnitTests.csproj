@@ -54,6 +54,8 @@
     <Compile Include="ExtensionMethods\DateExtensions.cs" />
     <Compile Include="ExtensionMethods\StringToDateExtensions.cs" />
     <Compile Include="ExtensionMethods\PredicateExtensions.cs" />
+    <Compile Include="ExtensionMethods\IntegerExtensions.cs" />
+    <Compile Include="ExtensionMethods\DoubleExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\TestItem.cs" />
   </ItemGroup>

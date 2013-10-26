@@ -11,6 +11,10 @@ Features include
 - Full intellisense
 - Full unit-test coverage
 
+Features added October 2013
+- Property data types for DateTime, Int and Double (previously only available for strings)
+- Added validation for Ints (Max and Min), Double (MaxValue and MinValue) and DateTime (MaxDate and MinDate)
+
 Sample code (see the unit tests for even more scenarios)
 ```csharp
 Person JoeSmith = new Person(){
@@ -55,4 +59,28 @@ foreach(var currentItem in validator.ValidationErrors){
 	Console.WriteLine(string.Format(@"{0} -> {1}", currentItem.Field, currentItem.Message));
 }
 
+```
+
+Sample code for features added October 2013
+```csharp
+Stuff Item = new Stuff(){
+	IntValue = 17,
+	DoubleValue = 18.2,
+	DateValue = new System.DateTime(2001,11,11),
+	DateAsString = "11/11/2001"
+};
+
+var validator = new ConciseValidation.Validator<Stuff>(Item);
+
+//See if the integer falls within the right bounds
+validator.ValidateField(item => item.IntValue).MinValue(15).MaxValue(25);
+
+//See if the double falls within the right bounds
+validator.ValidateField(item => item.DoubleValue).MinValue(15.7).MaxValue(25.3);
+
+//See if the date falls within the right bounds
+validator.ValidateField(item => item.DateValue).MinDate(new System.DateTime(2001,1,1)).MaxDate(new System.DateTime(2001,12,31));
+
+//See if a string is null, is convertable to a date and falls within a specific date range
+validator.ValidateField(item => item.DateAsString).NotNull().IsDateConvertToDate().MinDate(new System.DateTime(2001,1,1)).MaxDate(new System.DateTime(2001,12,31));
 ```

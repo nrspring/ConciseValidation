@@ -16,7 +16,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<DateTime>(item => item.TestDateTime).MaxDate(new System.DateTime(1992, 12, 24));
+            validator.ValidateField(item => item.TestDateTime).MaxDate(new System.DateTime(1992, 12, 24));
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -32,7 +32,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<DateTime>(item => item.TestDateTime).MaxDate(new System.DateTime(2013, 01, 01));
+            validator.ValidateField(item => item.TestDateTime).MaxDate(new System.DateTime(2013, 01, 01));
 
             //Assert
             Assert.AreEqual(0, validator.ValidatorErrors.Count);
@@ -46,7 +46,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<DateTime>(item => item.TestDateTime).MaxDate(new System.DateTime(2001, 11, 11));
+            validator.ValidateField(item => item.TestDateTime).MaxDate(new System.DateTime(2001, 11, 11));
 
             //Assert
             Assert.AreEqual(0, validator.ValidatorErrors.Count);

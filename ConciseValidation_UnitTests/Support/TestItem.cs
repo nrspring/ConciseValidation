@@ -13,7 +13,7 @@ namespace ConciseValidation_UnitTests.Support
         public DateTime? TestNullableDateTime { get; set;}
         public int? TestNullableInt { get; set; }
         public int TestInt { get; set; }
-        public long TestLong { get; set; }
-        public long? TestNullableLong { get; set; }
+        public double TestDouble{ get; set; }
+        public double? TestNullableDouble { get; set; }
     }
 }

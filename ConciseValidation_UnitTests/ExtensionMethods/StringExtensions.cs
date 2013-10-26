@@ -16,7 +16,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).NotNull().MaxLength(3);
+            validator.ValidateField(item => item.TestString).NotNull().MaxLength(3);
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -32,7 +32,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).NotNull().MaxLength(3);
+            validator.ValidateField(item => item.TestString).NotNull().MaxLength(3);
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -48,7 +48,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).NotNull().MaxLength(4);
+            validator.ValidateField(item => item.TestString).NotNull().MaxLength(4);
 
             //Assert
             Assert.AreEqual(0, validator.ValidatorErrors.Count);
@@ -62,7 +62,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).NotNull("Test Error Message");
+            validator.ValidateField(item => item.TestString).NotNull("Test Error Message");
 
             //Assert
             Assert.AreEqual(0, validator.ValidatorErrors.Count);
@@ -76,7 +76,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).NotNull("Test Error Message");
+            validator.ValidateField(item => item.TestString).NotNull("Test Error Message");
 
             //Assert
             Assert.AreEqual(1,validator.ValidatorErrors.Count);
@@ -92,7 +92,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).NotNull();
+            validator.ValidateField(item => item.TestString).NotNull();
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -108,7 +108,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MaxLength(10, "Test Error Message");
+            validator.ValidateField(item => item.TestString).MaxLength(10, "Test Error Message");
 
             //Assert
             Assert.AreEqual(0, validator.ValidatorErrors.Count);
@@ -122,7 +122,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MaxLength(3, "Test Error Message");
+            validator.ValidateField(item => item.TestString).MaxLength(3, "Test Error Message");
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -138,7 +138,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MaxLength(3);
+            validator.ValidateField(item => item.TestString).MaxLength(3);
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -154,7 +154,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MinLength(3, "Test Error Message");
+            validator.ValidateField(item => item.TestString).MinLength(3, "Test Error Message");
 
             //Assert
             Assert.AreEqual(0, validator.ValidatorErrors.Count);
@@ -168,7 +168,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MinLength(5, "Test Error Message");
+            validator.ValidateField(item => item.TestString).MinLength(5, "Test Error Message");
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -184,7 +184,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MinLength(5);
+            validator.ValidateField(item => item.TestString).MinLength(5);
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -200,7 +200,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MatchRegex(".e..", "Test Error Message");
+            validator.ValidateField(item => item.TestString).MatchRegex(".e..", "Test Error Message");
 
             //Assert
             Assert.AreEqual(0, validator.ValidatorErrors.Count);
@@ -214,7 +214,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MatchRegex(".a..", "Test Error Message");
+            validator.ValidateField(item => item.TestString).MatchRegex(".a..", "Test Error Message");
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -239,7 +239,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
                 var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
                 //Act
-                validator.ValidateField<string>(item => item.TestString).MatchPhone();
+                validator.ValidateField(item => item.TestString).MatchPhone();
 
                 //Assert
                 Assert.AreEqual(0, validator.ValidatorErrors.Count);
@@ -254,7 +254,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MatchPhone();
+            validator.ValidateField(item => item.TestString).MatchPhone();
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -270,7 +270,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MatchPhone("Test Error Message");
+            validator.ValidateField(item => item.TestString).MatchPhone("Test Error Message");
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -301,7 +301,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
                 var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
                 //Act
-                validator.ValidateField<string>(item => item.TestString).MatchEmail();
+                validator.ValidateField(item => item.TestString).MatchEmail();
 
                 //Assert
                 Assert.AreEqual(0, validator.ValidatorErrors.Count);
@@ -316,7 +316,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MatchEmail();
+            validator.ValidateField(item => item.TestString).MatchEmail();
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
@@ -332,7 +332,7 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
             var validator = new ConciseValidation.Validator<Support.TestItem>(test);
 
             //Act
-            validator.ValidateField<string>(item => item.TestString).MatchEmail("Test Error Message");
+            validator.ValidateField(item => item.TestString).MatchEmail("Test Error Message");
 
             //Assert
             Assert.AreEqual(1, validator.ValidatorErrors.Count);
