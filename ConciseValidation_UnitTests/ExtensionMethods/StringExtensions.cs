@@ -407,5 +407,35 @@ namespace ConciseValidation_UnitTests.ExtensionMethods
                 Assert.AreEqual("TestString must be a valid date.", validator.ValidatorErrors[0].Message);
             }
         }
+
+        [TestMethod]
+        public void Given_I_Want_To_Validate_A_String_IsNumeric_And_It_Is_Numeric_Then_Return_Proper_response()
+        {
+            //Arrange
+            var test = new Support.TestItem() { TestString = "3.14" };
+            var validator = new ConciseValidation.Validator<Support.TestItem>(test);
+
+            //Act
+            validator.ValidateField(item => item.TestString).IsNumber();
+
+            //Assert
+            Assert.AreEqual(0, validator.ValidatorErrors.Count);
+        }
+
+        [TestMethod]
+        public void Given_I_Want_To_Validate_A_String_IsNumeric_And_It_Is_Not_Numeric_Then_Return_Proper_response()
+        {
+            //Arrange
+            var test = new Support.TestItem() { TestString = "aaaa" };
+            var validator = new ConciseValidation.Validator<Support.TestItem>(test);
+
+            //Act
+            validator.ValidateField(item => item.TestString).IsNumber("Test Error Message");
+
+            //Assert
+            Assert.AreEqual(1, validator.ValidatorErrors.Count);
+            Assert.AreEqual("TestString", validator.ValidatorErrors[0].Field);
+            Assert.AreEqual("Test Error Message", validator.ValidatorErrors[0].Message);
+        }
     }
 }
