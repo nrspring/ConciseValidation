@@ -232,5 +232,48 @@ namespace ConciseValidation.Extensions
             return item.IsDate(string.Format("{0} must be a valid date.", item.FieldDescription));
         }
 
+        public static ValidatorItem<rootType, string> IsNumber<rootType>(this ValidatorItem<rootType, string> item, string errorMessage)
+        {
+            var returnResponse = new ValidatorItem<rootType, string>()
+            {
+                ParentValidator = item.ParentValidator,
+                FieldName = item.FieldName,
+                FieldValue = item.FieldValue,
+                CanContinue = false,
+                FieldDescription = item.FieldDescription
+            };
+
+            if (item.CanContinue)
+            {
+                if (string.IsNullOrWhiteSpace(item.FieldValue))
+                {
+                    returnResponse.CanContinue = true;
+                }
+                else
+                {
+                    Decimal value = 0;
+                    if (!Decimal.TryParse(item.FieldValue, out value))
+                    {
+                        var newError = new ValidatorError()
+                        {
+                            Field = item.FieldName,
+                            Message = errorMessage
+                        };
+
+                        item.ParentValidator.ValidatorErrors.Add(newError);
+                    }
+                    else
+                    {
+                        returnResponse.CanContinue = true;
+                    }
+                }
+            }
+            return returnResponse;
+        }
+
+        public static ValidatorItem<rootType, string> IsNumber<rootType>(this ValidatorItem<rootType, string> item)
+        {
+            return item.IsNumber(string.Format("{0} must be a valid number.", item.FieldDescription));
+        }
     }
 }
