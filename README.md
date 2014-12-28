@@ -11,6 +11,9 @@ Features include
 - Full intellisense
 - Full unit-test coverage
 
+Features added December 2014
+- Added validation to determine if a string can be converted to a decimal
+
 Features added October 2013
 - Property data types for DateTime, Int and Double (previously only available for strings)
 - Added validation for Ints (Max and Min), Double (MaxValue and MinValue) and DateTime (MaxDate and MinDate)
@@ -96,18 +99,5 @@ validator.ValidateField(item => item.DateValue).MinDate(new System.DateTime(2001
 
 //See if a string is null, is convertable to a date and falls within a specific date range
 validator.ValidateField(item => item.DateAsString).NotNull().IsDateConvertToDate().MinDate(new System.DateTime(2001,1,1)).MaxDate(new System.DateTime(2001,12,31));
-
-```
-
-Sample code for features added December 2014
-```csharp
-Stuff Item = new Stuff(){
-	DecimalAsString = "3.14"
-};
-
-var validator = new ConciseValidation.Validator<Stuff>(Item);
-
-//See if a string can be converted to a decimal
-validator.ValidateField(item => item.DecimalAsString).IsNumber();
 
 ```
