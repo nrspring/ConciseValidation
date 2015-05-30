@@ -13,6 +13,9 @@ Features include
 
 Features added May 2015
 - Property names can now also be defined through strings
+- Support for expando objects
+- Support for dynamic objects
+- More unit tests
 
 Features added December 2014
 - Added validation to determine if a string can be converted to a decimal
@@ -67,19 +70,6 @@ foreach(var currentItem in validator.ValidationErrors){
 
 ```
 
-Sample code for features added December 2014
-```csharp
-Stuff Item = new Stuff(){
-	DecimalAsString = "3.14"
-};
-
-var validator = new ConciseValidation.Validator<Stuff>(Item);
-
-//See if a string can be converted to a decimal
-validator.ValidateField(item => item.DecimalAsString).IsNumber();
-
-
-```
 Sample code for features added October 2013
 ```csharp
 Stuff Item = new Stuff(){
@@ -106,6 +96,18 @@ validator.ValidateField(item => item.DateAsString).NotNull().IsDateConvertToDate
 ```
 
 Sample code for features added December 2014
+```csharp
+Stuff Item = new Stuff(){
+	DecimalAsString = "3.14"
+};
+
+var validator = new ConciseValidation.Validator<Stuff>(Item);
+
+//See if a string can be converted to a decimal
+validator.ValidateField(item => item.DecimalAsString).IsNumber();
+```
+
+Sample code for features added May 2015
 ```csharp
 Stuff Item = new Stuff(){
 	IntValue = 17,
