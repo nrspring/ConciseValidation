@@ -11,6 +11,9 @@ Features include
 - Full intellisense
 - Full unit-test coverage
 
+Features added May 2015
+- Property names can now also be defined through strings
+
 Features added December 2014
 - Added validation to determine if a string can be converted to a decimal
 
@@ -99,5 +102,90 @@ validator.ValidateField(item => item.DateValue).MinDate(new System.DateTime(2001
 
 //See if a string is null, is convertable to a date and falls within a specific date range
 validator.ValidateField(item => item.DateAsString).NotNull().IsDateConvertToDate().MinDate(new System.DateTime(2001,1,1)).MaxDate(new System.DateTime(2001,12,31));
+
+```
+
+Sample code for features added December 2014
+```csharp
+Stuff Item = new Stuff(){
+	IntValue = 17,
+	DoubleValue = 18.2,
+	DateValue = new System.DateTime(2001,11,11),
+	DateAsString = "11/11/2001"
+};
+
+var validator = new ConciseValidation.Validator<Stuff>(Item);
+
+//Define the property with a string and then validate it
+validator.ValidateField<double>("DoubleValue").MinValue(15.7).MaxValue(25.3);
+
+//*********************************************************************************************
+
+//Pass in an expando object and validate it
+//Note that expando objects require property names to be passed as strings - validator.ValidateField<string>("FirstName") will work - validator.ValidateField(item=>item.FirstName) will not
+dynamic item = new ExpandoObject();
+item.FirstName = "Mikenna";
+
+validator.ValidateField<string>("FirstName").NotNull().MinLength(2);
+
+//*********************************************************************************************
+
+//Validate an object that is inherited from DynamicObject
+//Note - your inherited object must implement the ConciseValidation.IDynamicValidation interface.
+
+dynamic test = new DynamicTestItem<string>();
+test.FirstName = "Mikenna";
+
+validator.ValidateField<string>("FirstName").NotNull().MinLength(2);
+
+
+//Here is a sample inherited dynamic object
+public class DynamicTestItem<T> : DynamicObject, IDynamicValidation
+{
+	public DynamicTestItem()
+	{
+		_properties = new Dictionary<string, T>();
+	}
+
+	private readonly Dictionary<string, T> _properties;
+	public override bool TryGetMember(GetMemberBinder binder, out object result)
+	{
+		if (_properties.ContainsKey(binder.Name))
+		{
+			result = _properties[binder.Name];
+			return true;
+		}
+		else
+		{
+			result = default(T);
+			return false;
+		}
+	}
+
+	public override bool TrySetMember(SetMemberBinder binder, object value)
+	{
+		if (_properties.ContainsKey(binder.Name))
+		{
+			_properties[binder.Name] = (T)value;
+		}
+		else
+		{
+			_properties.Add(binder.Name, (T)value);
+		}
+
+		return true;
+	}
+
+	//This is from the ConciseValidation.IDynamicValidation interface and returns the value of a property given a string of the property name
+	public object GetPropertyValue(string propertyName)
+	{
+		if (_properties.ContainsKey(propertyName))
+		{
+			return _properties[propertyName];
+		}
+
+		return null;
+	}
+}
 
 ```
